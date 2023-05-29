@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+h1{
+    text-align: center;
+}
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(202, 200, 200);
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+form textarea {
+  height: 100px;
+}
+
+form button[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+h2 {
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 20px;
+}
+
+li p:first-of-type {
+  margin-bottom: 5px;
+  font-weight: bold}
+
+li p:last-of-type {
+  margin: 0;
+}
+    </style>
+</head>
+<body>
+    <h1>Leave your comments here !</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="body">Comment:</label>
+          <textarea id="body" name="body" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      <h2>Comments</h2>
+      <ul>
+        {% for comment in comments %}
+          <li>
+            <p><strong>{{ comment.name }}</strong> - {{ comment.created_at|date:"F j, Y, g:i a" }}</p>
+            <p>{{ comment.body }}</p>
+          </li>
+        {% empty %}
+          <li>No comments yet.</li>
+        {% endfor %}
+</body>
+</html>

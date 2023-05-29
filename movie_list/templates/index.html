@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Top IMDB movies</title>
+    <style>
+    body{
+        background-color: rgb(246, 239, 239);
+    }
+      .movie-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 columns */
+        grid-gap: 20px; /* gap between grid items */
+      }
+
+      .movie-container {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        transition: all 0.3s ease-in-out;
+        border-radius: 15px;
+      }
+
+      .movie-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px 15px 0 0;
+      }
+
+      .movie-info {
+        padding: 20px;
+      }
+
+      .movie-info h2 {
+        margin-top: 0;
+      }
+      .paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.paginator a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #333;
+}
+
+.paginator a:hover {
+  background-color: #eee;
+}
+
+.paginator .active {
+  background-color: #333;
+  color: #fff;
+}
+
+.paginator .disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+      /* media query for smaller screens */
+      @media screen and (max-width: 768px) {
+        .movie-grid {
+          grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        }
+      }
+
+      /* media query for even smaller screens */
+      @media screen and (max-width: 480px) {
+        .movie-grid {
+          grid-template-columns: 1fr; /* 1 column */
+        }
+      }
+  </style>
+  </head>
+  <body>
+    <b><h1 style="text-align: center; text-decoration: underline;">TOP 100 IMDB movies</h1></b>
+    <div class="movie-grid">
+      {% for movie in page_obj %}
+      <div class="movie-container">
+        <div class="movie-image">
+          <img src="{{ movie.image }}" alt="{{ movie.title }}">
+        </div>
+        <div class="movie-info">
+          <h2>{{ movie.title }}</h2>
+          <p>Year: {{movie.year}}</p>
+          <p>Rank: {{ movie.rank }}</p>
+          <p>Description: {{ movie.description }}</p>
+          <p>Rating: {{ movie.rating }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="p" style="text-align: right; margin-top:15px;">Comments</button>
+    <div class="paginator">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current-page">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+    <script>
+        const comment = document.querySelectorAll('.p');
+comment.forEach(function(to_comment) {
+  to_comment.addEventListener('click', function() {
+    const url = `/comments`;
+    window.location.href = url;
+  });
+});
+    </script>
+  </body>
+</html>
