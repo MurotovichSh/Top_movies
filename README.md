@@ -1,5 +1,6 @@
 # Overview 
 A Django website that retrievs the top IMDB movies and their details using the RapidAPI. The website includes a comment section that allows users to leave comments about the movies.
+
 ![photo_2023-07-16 20 05 27](https://github.com/MurotovichSh/Top_movies/assets/124291194/7575c071-fd0b-4e27-8bd3-8371dbe5caa9)
 ![photo_2023-07-16 20 05 23](https://github.com/MurotovichSh/Top_movies/assets/124291194/902a8b35-eff1-4d08-a406-e3ce1f66007b)
 # Features 
