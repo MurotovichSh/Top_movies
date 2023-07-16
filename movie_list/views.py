@@ -33,7 +33,6 @@ def index(request):
             'image': movie['image'],
             'title': movie['title'],
             'rank': movie['rank'],
-            'description':movie['description'],
             'rating':movie['rating'],
             'year':movie['year']
         })
