@@ -1,5 +1,15 @@
 # Overview 
-A Django website that retrievs the top IMDB movies and their details using the RapidAPI. The website includes a comment section that allows users to leave comments about the movies.
+A Django website that retrievs the top IMDB movies and their details using the RapidAPI. The website includes a comment section that allows users to leave comments about the movies. Here I used testing from django.test import TestCase
+from django.test.client import Client
+
+Create your tests here.
+class HomeViewTest(TestCase):
+def test_index(self):
+client= Client()
+response = client.get('/')
+assert response.status_code == 200
+
+In this project, unit testing has been implemented using the Django TestCase class and the Client class from django.test.client
 
 ![photo_2023-07-16 20 05 27](https://github.com/MurotovichSh/Top_movies/assets/124291194/7575c071-fd0b-4e27-8bd3-8371dbe5caa9)
 
