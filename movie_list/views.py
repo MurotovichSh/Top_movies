@@ -11,6 +11,7 @@ headers = {
 	"X-RapidAPI-Key": "565905d3aamsh90e6cfeb00ba7c9p1eb7bejsn9ff323ad2aab",
 	"X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com"
 }
+# Comments section
 def comment(request):
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -22,9 +23,8 @@ def comment(request):
     comments = Comment.objects.order_by('-created_at')
     context={'comments': comments}
     return render(request,'comment.html',context)
+# Main function
 def index(request):
-
-
     response = requests.get(url, headers=headers)
     movies= response.json()
     movie_data=[]
