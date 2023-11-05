@@ -9,7 +9,6 @@ In this project, unit testing has been implemented using the Django TestCase cla
 # Features 
 Movie listings: The website retrieves the top 100 movies from IMDB using the RapidAPI and displays them on a web page.
 Pagination: The website includes pagination buttons that allow users to browse through the list of movies.
-Movie detail page: The website includes a detail page for each movie that displays more information about it, including the plot, cast, and ratings.
 Comment section: The website includes a comment section that allows users to leave comments about the movies.
 Comment form: The comment section includes a form that users can fill out to leave a comment.
 Comment display: The comment section displays existing comments in reverse chronological order.
